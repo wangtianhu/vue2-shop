@@ -8,6 +8,14 @@
             {
                 "corejs": 3
             }
+        ],
+        [
+            "import",
+            {
+                "libraryName": "vant",
+                "libraryDirectory": "es",
+                "style": true
+            }
         ]
     ]
 }
