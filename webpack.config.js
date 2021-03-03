@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const path = require('path');
 const config = require('./public/config')[isDev ? 'dev' : 'build'];
@@ -15,6 +16,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.jsx?$/,
         use: {
@@ -72,6 +78,7 @@ module.exports = {
   },
 
   plugins: [
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
@@ -83,7 +90,11 @@ module.exports = {
     }),
     new CleanWebpackPlugin()
   ],
-
+  resolve: {
+    alias: {
+      '@': path.resolve('src')
+    }
+  },
   devServer: {
     port: '8085',
     hot: true,
