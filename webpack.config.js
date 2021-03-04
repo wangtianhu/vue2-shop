@@ -40,14 +40,14 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css|less)$/,
         use: [
           'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: function () {
+              plugins: function() {
                 return [
                   require('autoprefixer')({
                     'overrideBrowserslist': ['>0.25%', 'not dead']
@@ -56,10 +56,26 @@ module.exports = {
               }
             }
           },
-          'sass-loader'
+          'less-loader'
         ],
         exclude: /node_modules/
       },
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     {
+      //       loader: 'style-loader' // 使用style-loader进行处理，位置必须在css-loader前面
+      //     },
+      //     {
+      //       loader: 'css-loader' // 使用css-loader进行处理
+      //     },
+      //     {
+      //       loader: 'less-loader' // 引入less-loader
+      //     }
+      //   ],
+
+      //   exclude: /node_modules/
+      // },
       {
         test: /\.(png|jpg|gif|jpeg|webp|svg|eot|ttf|woff|woff2)$/,
         use: [

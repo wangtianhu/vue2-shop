@@ -5,6 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><% (htmlWebpackPlugin.options.config.title) %></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.7/lib/index.css" />
+    <script>
+      document.documentElement.addEventListener(
+        'touchstart',
+        function(event) {
+          if (event.touches.length > 1) {
+            event.preventDefault();
+          }
+        },
+        false
+      );
+
+      var lastTouchEnd = 0;
+      document.documentElement.addEventListener(
+        'touchend',
+        function(event) {
+          var now = Date.now();
+          if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        },
+        false
+      );
+      document.addEventListener('gesturestart', function(event) {
+        event.preventDefault();
+      });
+    </script>
+    <script>
+      !(function(doc, win) {
+        var docEl = doc.documentElement;
+        var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        var recalc = function() {
+          var clientWidth = docEl.clientWidth;
+          var MAX_WIDTH = 750; // 设计稿宽度为750px，html设置字体大小100px，设计稿上30px相当于页面上0.3rem；
+          if (!clientWidth) {
+            return;
+          }
+          if (clientWidth >= MAX_WIDTH) {
+            docEl.style.fontSize = '100px';
+          } else {
+            docEl.style.fontSize = 100 * (clientWidth / MAX_WIDTH) + 'px';
+          }
+        };
+        recalc();
+        if (!doc.addEventListener) {
+          return;
+        }
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+    </script>
   </head>
   <body>
     <div id="app"></div>
