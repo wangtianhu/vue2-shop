@@ -1,7 +1,6 @@
 <template>
   <div class="content">
     <MaskLay />
-    <Test />
     <div class="top-swiper">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#66c6f2">
         <template v-for="(item, index) in swiperList">

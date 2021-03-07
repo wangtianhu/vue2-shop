@@ -29,7 +29,7 @@ export default {
         {
           icon: 'icon-fenlei',
           name: '分类',
-          jump: 'goods-classification'
+          jump: 'categroy'
         },
         {
           icon: 'icon-gouwuche',
