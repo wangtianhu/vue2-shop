@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar" ref="navBar">
     <ul>
       <template v-for="(item, index) in list">
         <li
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -46,6 +47,7 @@ export default {
   },
   created() {},
   mounted() {
+    this.SET_FOOT_HEIGHT(this.$refs['navBar'].offsetHeight);
     this.$nextTick(() => {
       setTimeout(() => {
         let { name } = this.$route;
@@ -55,6 +57,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['SET_FOOT_HEIGHT']),
     clickChangeNav(item, index) {
       this.activeIndex = index;
       this.$router.push({
