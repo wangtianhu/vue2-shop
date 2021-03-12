@@ -8,7 +8,9 @@ import Form from 'vant/lib/form';
 import Field from 'vant/lib/field';
 import Button from 'vant/lib/button';
 import Toast from 'vant/lib/toast';
-console.log('Toast---', Toast);
+import CellGroup from 'vant/lib/toast';
+import Cell from 'vant/lib/toast';
+
 import router from './router';
 import Index from './index.vue';
 import store from './store';
@@ -21,7 +23,8 @@ Vue.use(Form);
 Vue.use(Field);
 Vue.use(Button);
 Vue.use(Toast);
-console.log('Vue---', Vue);
+Vue.use(CellGroup);
+Vue.use(Cell);
 new Vue({
   store,
   router,

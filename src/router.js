@@ -65,12 +65,20 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   let token = window.localStorage.getItem('token');
-  console.log('token-----', token);
-  if (!token) {
-    return next('/login');
+  const needLogin = ['/shopping-cart', '/user-center'];
+  console.log(to.path, token);
+  if (to.path === '/login') {
+    next();
   }
-  if (from.path === '/login') {
-    return next();
+  if (!token) {
+    if (needLogin.indexOf(to.path) > -1) {
+      console.log('我没登录去 登录页面');
+      next('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
   }
 });
 export default router;
